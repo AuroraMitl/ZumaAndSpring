@@ -1,5 +1,6 @@
 package com.aurora.petclinic.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "clients")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Client {
 
     @Id

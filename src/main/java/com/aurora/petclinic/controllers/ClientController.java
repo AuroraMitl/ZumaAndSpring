@@ -4,10 +4,7 @@ import com.aurora.petclinic.model.Client;
 import com.aurora.petclinic.services.ClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -36,10 +33,21 @@ public class ClientController {
     }
 
     @PostMapping("/addClient")
-    public String saveClient(@RequestParam("client") @Valid Client client){
+    public String saveClient(@ModelAttribute("client") @Valid Client client){
         clientService.saveClient(client);
         return "redirect:/clients";
     }
 
+    @PostMapping("/showFormForClientUpdate")
+    public String showFormForEditClient(@RequestParam("id") @Valid int id, Model model) {
+        Client client = clientService.findById(id);
+        model.addAttribute("client", client);
+        return "addClientView";
+    }
 
+    @PostMapping("/deleteClient")
+    public String deleteClient(@RequestParam("id") @Valid int id) {
+        clientService.deleteById(id);
+        return "redirect:/clients";
+    }
 }

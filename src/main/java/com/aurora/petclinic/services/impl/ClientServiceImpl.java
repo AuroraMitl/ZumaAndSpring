@@ -26,5 +26,12 @@ ClientRepository clientRepository;
         clientRepository.save(client);
     }
 
+    public Client findById(int id){
+        return clientRepository.findById(id).orElse(null);
+    }
 
+    @Override
+    public void deleteById(int id) {
+        clientRepository.deleteById(id);
+    }
 }
