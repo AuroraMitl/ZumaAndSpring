@@ -28,6 +28,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public Client findById(int id){
+
         return clientRepository.findById(id).orElse(null);
     }
 

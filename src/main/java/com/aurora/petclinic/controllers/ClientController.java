@@ -42,7 +42,7 @@ public class ClientController {
     public String showFormForEditClient(@RequestParam("id") @Valid int id, Model model) {
         Client client = clientService.findById(id);
         model.addAttribute("client", client);
-        return "addClientView";
+        return "editClientView";
     }
 
     @PostMapping("/deleteClient")
