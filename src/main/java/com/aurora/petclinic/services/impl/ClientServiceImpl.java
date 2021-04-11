@@ -9,7 +9,8 @@ import java.util.List;
 
 @Service
 public class ClientServiceImpl implements ClientService {
-ClientRepository clientRepository;
+
+    ClientRepository clientRepository;
 
 
     public ClientServiceImpl(ClientRepository clientRepository) {
