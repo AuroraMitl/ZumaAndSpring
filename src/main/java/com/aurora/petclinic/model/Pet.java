@@ -21,6 +21,10 @@ public class Pet {
     @NotNull
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    Client client;
+
     public Pet(@NotNull String name) {
         this.name = name;
     }

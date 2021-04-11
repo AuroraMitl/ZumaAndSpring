@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,6 +24,9 @@ public class Client {
 
     @NotNull
     private String name;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Pet> petsList = new ArrayList<>();
 
     public Client(@NotNull String name) {
         this.name = name;
