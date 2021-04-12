@@ -17,10 +17,12 @@ import java.util.List;
 public class PetController {
 
    PetService petService;
+   ClientService clientService;
 
-    public PetController(PetService petService) {
+    public PetController(PetService petService, ClientService clientService) {
 
         this.petService = petService;
+        this.clientService = clientService;
     }
 
 //    @GetMapping("")
@@ -31,15 +33,18 @@ public class PetController {
 //    }
 
     @GetMapping("/addPet")
-    public String showAddPetForm(Model model){
+    public String showAddPetForm(@ModelAttribute("clientId") @Valid int clientId, Model model){
         model.addAttribute("pet",new Pet());
+        model.addAttribute("client", clientService.findById(clientId));
         return "editPetView";
     }
 
     @PostMapping("/addPet")
-    public String savePet(@ModelAttribute("pet") @Valid Pet pet){
-       petService.savePet(pet);
-        return "redirect:/clients";
+    public String savePet(@ModelAttribute("pet") @Valid Pet pet, Model model){
+        petService.savePet(pet);
+        Client client = clientService.findById(pet.getClient().getId());
+        model.addAttribute("client",client);
+        return "editClientView";
     }
 
     @PostMapping("/showFormForPetUpdate")
