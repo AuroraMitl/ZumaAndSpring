@@ -33,17 +33,18 @@ public class PetController {
 //    }
 
     @GetMapping("/addPet")
-    public String showAddPetForm(@ModelAttribute("clientId") @Valid int clientId, Model model){
+    public String showAddPetForm(@RequestParam("clientId") @Valid int clientId, Model model){
         model.addAttribute("pet",new Pet());
         model.addAttribute("client", clientService.findById(clientId));
         return "editPetView";
     }
 
     @PostMapping("/addPet")
-    public String savePet(@ModelAttribute("pet") @Valid Pet pet, Model model){
+    public String savePet(@ModelAttribute("pet") @Valid Pet pet, @RequestParam("clientId") @Valid int clientId, Model model){
+        pet.setClient(clientService.findById(clientId));
         petService.savePet(pet);
-        Client client = clientService.findById(pet.getClient().getId());
-        model.addAttribute("client",client);
+        //Client client = clientService.findById(pet.getClient().getId());
+        model.addAttribute("client", clientService.findById(clientId));
         return "editClientView";
     }
 

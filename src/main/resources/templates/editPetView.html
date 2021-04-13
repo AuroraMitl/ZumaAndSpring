@@ -14,9 +14,9 @@
     <h3>Edit pets</h3>
     <hr>
     <p class="h4 mb-4">If you want to add or edit a client's pet, fill the field below</p>
-    <form action="#" th:action ="@{/pets/addPet}" th:object= "${pet}" method="POST">
+    <form action="#" th:action ="@{/pets/addPet}" th:object="${pet}"  method="POST">
         <input type="hidden" th:field="*{id}"/>
-        <input type="hidden" th:field="${client}"/>
+        <input type="hidden" name="clientId" th:value="${client.id}"/>
 
         <div class="form-group">
             <input type="text" th:field="*{name}" placeholder="Pet name" class="form-control mb-4 col-4">
