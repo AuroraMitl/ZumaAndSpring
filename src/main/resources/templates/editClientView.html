@@ -23,7 +23,6 @@
             </div>
         </div>
 
-
         <!-- Pet name<input type="text" name="petName" placeholder="Pet name">-->
         <br>
 
@@ -31,8 +30,12 @@
     </form>
     <hr>
     <a th:href="@{/clients}">Back to client's list</a>
-</div>
 
+
+<form action="#" th:action="@{/pets/addPet}" method="GET">
+    <input type="hidden" name="clientId" th:value="${client.id}"/>
+    <button type="submit" class="btn btn-primary btn-sm mb-3">Add</button>
+</form>
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -75,7 +78,7 @@
     </tr>
     </tbody>
 </table>
-
+</div>
 </body>
 
 </html>

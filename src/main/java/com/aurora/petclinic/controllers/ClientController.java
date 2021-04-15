@@ -38,7 +38,14 @@ public class ClientController {
         return "redirect:/clients";
     }
 
-    @PostMapping("/showFormForClientUpdate")
+    @GetMapping("/showFormForClientUpdate")
+    public String getForPostEditClient(@RequestParam("id") @Valid int id, Model model){
+        model.addAttribute("client",clientService.findById(id));
+        return "editClientView";
+    }
+
+
+    @PostMapping("/showFormForClientUpdate")//спр Димать
     public String showFormForEditClient(@RequestParam("id") @Valid int id, Model model) {
         Client client = clientService.findById(id);
         model.addAttribute("client", client);
