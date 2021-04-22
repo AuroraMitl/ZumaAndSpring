@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<div class="navbar navbar-expand-sm bg-dark navbar-dark" th:fragment="header (module)">
+    <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="nav-link" th:href="@{/}">
+            <img th:src="@{/img/Logo.png}" width="60" height="60" th:title="Home"/>
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav">
+            <li th:classappend="${module == 'clients' ? 'active' : ''}">
+                <a class="nav-link" th:href="@{/clients}">Clients</a>
+            </li>
+            <li th:classappend="${module == 'pets' ? 'active' : ''}">
+                <a class="nav-link" th:href="@{/pets}">Pets</a>
+            </li>
+            <li th:classappend="${module == 'doctors' ? 'active' : ''}">
+                <a class="nav-link" th:href="@{#}">Doctors</a>
+            </li>
+            <li th:classappend="${module == 'login' ? 'active' : ''}">
+                <a class="nav-link" th:href="@{#}">Login</a>
+            </li>
+        </ul>
+
+
+        <ul class="nav navbar-nav ml-auto justify-content-end">
+            <li>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+                </form>
+
+
+
+
+
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

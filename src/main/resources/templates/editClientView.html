@@ -11,6 +11,7 @@
 
 <body>
 <div class="container">
+    <div th:replace="fragments/header :: header('')" />
     <h3>Edit client</h3>
     <hr>
     <p class="h4 mb-4">If you want to edit a client name, fill the field below</p>
@@ -23,7 +24,6 @@
             </div>
         </div>
 
-
         <!-- Pet name<input type="text" name="petName" placeholder="Pet name">-->
         <br>
 
@@ -31,18 +31,12 @@
     </form>
     <hr>
     <a th:href="@{/clients}">Back to client's list</a>
-</div>
 
-<form action="#" th:action="@{/pets/addPet}" method="get">
+
+<form action="#" th:action="@{/pets/addPet}" method="GET">
     <input type="hidden" name="clientId" th:value="${client.id}"/>
-    <button type="submit" class="btn btn-info btn-sm">Add</button>
+    <button type="submit" class="btn btn-primary btn-sm mb-3">Add</button>
 </form>
-
-<!--<a th:href="@{/pets/addPet}"
-   class="btn btn-primary btn-sm mb-3">
-    Add client
-</a>-->
-
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -85,7 +79,8 @@
     </tr>
     </tbody>
 </table>
-
+    <div th:replace="fragments/footer :: footer" />
+</div>
 </body>
 
 </html>

@@ -14,7 +14,12 @@
 
 <body>
 
+
+
 <div class="container">
+
+    <div th:replace="fragments/header :: header('clients')" />
+
 
     <h3>Client's list</h3>
     <hr>
@@ -25,6 +30,19 @@
         Add client
     </a>
 
+    <form action="#" th:action ="@{/clients/addClient}" th:object= "${client}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <input type="text" th:field="*{name}" placeholder="Client name" class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+            </div>
+        </div>
+        <!-- Pet name<input type="text" name="petName" placeholder="Pet name">-->
+        <br>
+
+        <button type="submit" >Save</button>
+    </form>
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
@@ -81,6 +99,8 @@
         </tbody>
     </table>
 </div>
+
+<div th:replace="fragments/footer :: footer" />
 
 </body>
 </html>

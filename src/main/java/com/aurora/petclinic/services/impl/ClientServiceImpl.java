@@ -12,7 +12,6 @@ public class ClientServiceImpl implements ClientService {
 
     ClientRepository clientRepository;
 
-
     public ClientServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
@@ -28,12 +27,16 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public Client findById(int id){
-
         return clientRepository.findById(id).orElse(null);
     }
 
     @Override
     public void deleteById(int id) {
         clientRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Client> findClientsByName(String name){
+        return clientRepository.findAllByName(name);
     }
 }

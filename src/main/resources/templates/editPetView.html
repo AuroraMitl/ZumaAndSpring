@@ -11,6 +11,7 @@
 
 <body>
 <div class="container">
+    <div th:replace="fragments/header :: header('')" />
     <h3>Edit pets</h3>
     <hr>
     <p class="h4 mb-4">If you want to add or edit a client's pet, fill the field below</p>
@@ -32,6 +33,7 @@
     </form>
     <hr>
     <a th:href="@{/clients}">Back to client's list</a>
+    <div th:replace="fragments/footer :: footer" />
 </div>
 </body>
 
