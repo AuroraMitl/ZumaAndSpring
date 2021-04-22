@@ -32,6 +32,13 @@ public class ClientController {
         return "addClientView";
     }
 
+    @GetMapping("/searchClient")
+    public String searchClient(@RequestParam("name") @Valid String name, Model model){
+        List<Client> clientsList=clientService.findClientsByName(name);
+        model.addAttribute("clientsList", clientsList);
+        return "clientsListView";
+    }
+
     @PostMapping("/addClient")
     public String saveClient(@ModelAttribute("client") @Valid Client client){
         clientService.saveClient(client);
@@ -45,7 +52,7 @@ public class ClientController {
     }
 
 
-    @PostMapping("/showFormForClientUpdate")//спр Димать
+    @PostMapping("/showFormForClientUpdate")
     public String showFormForEditClient(@RequestParam("id") @Valid int id, Model model) {
         Client client = clientService.findById(id);
         model.addAttribute("client", client);
