@@ -25,8 +25,12 @@ public class Client {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Pet> petsList = new ArrayList<>();
+//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+//    private List<Pet> petsList = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Doctor> doctorsList = new ArrayList<>();
+
 
     public Client(@NotNull String name) {
         this.name = name;

@@ -24,12 +24,12 @@ public class PetController {
         this.petService = petService;
     }
 
-//    @GetMapping("")
-//    public String getAllClients(Model model){
-//        List<Client> clientsList=clientService.findAll();
-//        model.addAttribute("clientsList", clientsList);
-//        return "clientsListView";
-//    }
+  @GetMapping("")
+    public String getAllPets(Model model){
+        List<Pet> petsList=petService.findAll();
+        model.addAttribute("petsList", petsList);
+        return "petsListView";
+    }
 
     @GetMapping("/addPet")
     public String showAddPetForm(@RequestParam("clientId") @Valid int clientId, Model model){
@@ -65,5 +65,7 @@ public class PetController {
         petService.deleteById(id);//удаляется петс
         return "editClientView";
     }
+
+
 
 }

@@ -18,6 +18,12 @@ public class PetServiceImpl implements PetService {
     public PetServiceImpl(PetRepository petRepository) {
         this.petRepository = petRepository;
     }
+
+    @Override
+    public List<Pet> findAll() {
+      return petRepository.findAll();
+    }
+
     @Override
     public void savePet(Pet pet) {
        petRepository.save(pet);
