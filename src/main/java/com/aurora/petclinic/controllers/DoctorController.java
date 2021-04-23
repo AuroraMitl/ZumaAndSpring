@@ -21,14 +21,11 @@ DoctorService doctorService;
         this.doctorService = doctorService;
     }
 
-
     @GetMapping("")
     public String getAllClients(Model model){
         List<Doctor> doctorsList=doctorService.findAll();
         model.addAttribute("doctorsList", doctorsList);
         return "doctorsListView";
     }
-
-
 
 }

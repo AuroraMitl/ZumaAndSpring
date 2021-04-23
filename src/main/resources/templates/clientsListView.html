@@ -30,18 +30,12 @@
         Add client
     </a>
 
-    <form action="#" th:action ="@{/clients/addClient}" th:object= "${client}" method="POST">
-        <input type="hidden" th:field="*{id}"/>
-
+    <form action="#" th:action ="@{/clients/searchClient}" method="GET">
         <div class="form-group">
-            <input type="text" th:field="*{name}" placeholder="Client name" class="form-control mb-4 col-4">
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
-            </div>
+            <input type="text" placeholder="Client name for search" name="name" th:value="${name}" class="form-control mb-4 col-4">
         </div>
-        <!-- Pet name<input type="text" name="petName" placeholder="Pet name">-->
+        <button type="submit" >Search</button>
         <br>
-
-        <button type="submit" >Save</button>
     </form>
 
     <table class="table table-bordered table-striped">
