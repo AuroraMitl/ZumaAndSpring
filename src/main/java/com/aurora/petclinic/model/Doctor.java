@@ -26,7 +26,7 @@ public class Doctor {
     @Column(name="name")
     private String doctorName;
 
-    @ManyToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "doctorsList")
     private List<Client> clientsList = new ArrayList<>();
 
     public Doctor(@NotNull String doctorName) {
