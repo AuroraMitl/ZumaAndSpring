@@ -6,32 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>Save Client</title>
+    <title>Save Doctor</title>
 </head>
 
 <body>
 <div class="container">
     <div th:replace="fragments/header :: header('')" />
-    <h3>Add client</h3>
+    <h3>Add doctor</h3>
     <hr>
-    <p class="h4 mb-4">If you want to save a new client, fill the field below</p>
-    <form action="#" th:action ="@{/clients/addClient}" th:object= "${client}" method="POST">
-        <input type="hidden" th:field="*{id}"/>
-        <input type="hidden" th:name="doctorId" th:value="${doctortId}"/>
+    <p class="h4 mb-4">If you want to save a new doctor, fill the field below</p>
+    <form action="#" th:action ="@{/doctors/addDoctor}" th:object= "${doctor}" method="POST">
+        <input type="hidden" th:field="*{doctorId}"/>
+
         <div class="form-group">
-            <input type="text" th:field="*{name}" placeholder="Client name" class="form-control mb-4 col-4">
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+            <input type="text" th:field="*{doctorName}" placeholder="Doctor name" class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('doctorName')}" th:errors="*{doctorName}">
             </div>
         </div>
-
-
-       <!-- Pet name<input type="text" name="petName" placeholder="Pet name">-->
         <br>
-
         <button type="submit" >Save</button>
     </form>
     <hr>
-    <a th:href="@{/clients}">Back to client's list</a>
+    <a th:href="@{/doctors}">Back to doctor's list</a>
     <div th:replace="fragments/footer :: footer" />
 </div>
 </body>

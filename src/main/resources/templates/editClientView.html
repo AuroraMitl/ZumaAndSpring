@@ -17,6 +17,7 @@
     <p class="h4 mb-4">If you want to edit a client name, fill the field below</p>
     <form action="#" th:action ="@{/clients/addClient}" th:object= "${client}" method="POST">
         <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:name="doctorId" th:value="${doctorId}" />
 
         <div class="form-group">
             <input type="text" th:field="*{name}" placeholder="Client name" class="form-control mb-4 col-4">

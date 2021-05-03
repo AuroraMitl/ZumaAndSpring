@@ -27,8 +27,7 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Pet> petsList = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(name = "doctors_clients",
                 joinColumns = @JoinColumn(name = "client_id"),
                 inverseJoinColumns = @JoinColumn(name = "doctor_id"))

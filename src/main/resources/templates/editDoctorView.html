@@ -1,58 +1,57 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-    <title>Clients List</title>
+    <title>Edit Doctor</title>
 </head>
 
 <body>
-
-
-
 <div class="container">
-
-    <div th:replace="fragments/header :: header('clients')" />
-
-
-    <h3>Client's list</h3>
+    <div th:replace="fragments/header :: header('')" />
+    <h3>Edit doctor</h3>
     <hr>
+    <p class="h4 mb-4">If you want to edit a doctor name, fill the field below</p>
+<!--    <form action="#" th:action ="@{/doctors/addDoctor}" th:object= "${doctor}" method="POST">
+        <input type="hidden" th:field="*{doctorId}"/>
 
-    <!-- Add a button -->
-    <a th:href="@{clients/addClient}"
-       class="btn btn-primary btn-sm mb-3">
-        Add client
-    </a>
-
-    <form action="#" th:action ="@{/clients/searchClient}" method="GET">
         <div class="form-group">
-            <input type="text" placeholder="Client name for search" name="name" th:value="${name}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{doctorName}" placeholder="Doctor name" class="form-control mb-4 col-4">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('doctorName')}" th:errors="*{doctorName}">
+            </div>
         </div>
-        <button type="submit" >Search</button>
-        <br>
-    </form>
 
+        &lt;!&ndash; Pet name<input type="text" name="petName" placeholder="Pet name">&ndash;&gt;
+        <br>
+
+        <button type="submit" >Save</button>
+    </form>-->
+    <hr>
+    <a th:href="@{/clients}">Back to client's list</a>
+
+
+    <form action="#" th:action="@{/clients/addClientForDoctor}" method="GET">
+        <input type="hidden" name="doctorId" th:value="${doctor.doctorId}"/>
+        <button type="submit" class="btn btn-primary btn-sm mb-3">Add</button>
+    </form>
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>Client Name</th>
+
+            <th>Doctor name</th>
             <th>Action</th>
-            <th>Pet name</th>
+
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="client : ${clientsList}">
+        <tr th:each="client : ${doctor.getClientsList()}">
 
 
-            <td th:text="${client.getName}" />
-
+            <td th:text="${client.getName()}" />
 
 
             <td>
@@ -60,43 +59,28 @@
                     <div class="col-small">
                         <form action="#" th:action="@{/clients/showFormForClientUpdate}" method="post">
                             <input type="hidden" name="id" th:value="${client.id}"/>
-                            <input type="hidden" name="doctorId" th:value="-1"/>
+                            <input type="hidden" name="doctorId" th:value="${doctor.doctorId}"/>
                             <button type="submit" class="btn btn-info btn-sm">Edit</button>
                         </form>
                     </div>
                     <div class="col-small">
                         <form action="#" th:action="@{/clients/deleteClient}" method="post">
                             <input type="hidden" name="id" th:value="${client.id}"/>
-                            <input type="hidden" name="doctorId" th:value="-1"/>
+                            <input type="hidden" name="doctorId" th:value="${doctor.doctorId}"/>
                             <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="if (!(confirm('Are you sure you want to delete this client?'))) return false">
                                 Delete
                             </button>
-
                         </form>
                     </div>
-                </div>
-            </td>
-
-            <td>
-                <div th:unless="${#lists.isEmpty(client.getPetsList())}" th:each="pet : ${client.getPetsList()}">
-                    <p>
-                        <span th:text="${pet.getName()}" />
-                    </p>
-                </div>
-                <div th:if="${#lists.isEmpty(client.getPetsList())}">
-                    <p>
-                        <span th:text="'no pets'" />
-                    </p>
                 </div>
             </td>
 
         </tr>
         </tbody>
     </table>
+    <div th:replace="fragments/footer :: footer" />
 </div>
-
-<div th:replace="fragments/footer :: footer" />
-
 </body>
+
 </html>

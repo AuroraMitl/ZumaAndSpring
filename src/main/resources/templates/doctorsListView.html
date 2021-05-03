@@ -43,27 +43,27 @@
         <tr th:each="doctor : ${doctorsList}">
 
             <td th:text="${doctor.getDoctorName()}" />
-<!--            -->
-<!--            <td>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-small">-->
-<!--                        <form action="#" th:action="@{/clients/showFormForClientUpdate}" method="post">-->
-<!--                            <input type="hidden" name="id" th:value="${client.id}"/>-->
-<!--                            <button type="submit" class="btn btn-info btn-sm">Edit</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                    <div class="col-small">-->
-<!--                        <form action="#" th:action="@{/clients/deleteClient}" method="post">-->
-<!--                            <input type="hidden" name="id" th:value="${client.id}"/>-->
-<!--                            <button type="submit" class="btn btn-danger btn-sm"-->
-<!--                                    onclick="if (!(confirm('Are you sure you want to delete this client?'))) return false">-->
-<!--                                Delete-->
-<!--                            </button>-->
 
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </td>-->
+            <td>
+                <div class="row">
+                    <div class="col-small">
+                        <form action="#" th:action="@{/doctors/showFormForDoctorUpdate}" method="post">
+                            <input type="hidden" name="id" th:value="${doctor.doctorId}"/>
+                            <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                        </form>
+                    </div>
+                    <div class="col-small">
+                        <form action="#" th:action="@{/doctors/deleteDoctor}" method="post">
+                            <input type="hidden" name="id" th:value="${doctor.doctorId}"/>
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="if (!(confirm('Are you sure you want to delete this client?'))) return false">
+                                Delete
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </td>
 
             <td>
                 <div th:unless="${#lists.isEmpty(doctor.getClientsList())}" th:each="client : ${doctor.getClientsList()}">
